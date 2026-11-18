@@ -1,0 +1,16 @@
+[build]
+  # The Angular app lives in a subfolder of the repository.
+  base = "jumi-app"
+  command = "npm run build"
+  # Angular's application builder writes the browser bundle here (relative to base).
+  publish = "dist/jumi-app/browser"
+
+[build.environment]
+  # Angular 21 requires Node ^20.19, ^22.12 or >=24.
+  NODE_VERSION = "22"
+
+# Client-side routing: serve index.html for deep links such as /catalogo or /producto/:id.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
