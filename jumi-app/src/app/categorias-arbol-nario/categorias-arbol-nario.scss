@@ -1,0 +1,85 @@
+@use '../../estilos/tokens' as *;
+
+.categorias {
+  padding: $espacio-16 0;
+  border-radius: $radio-tarjeta;
+  background: $superficie;
+
+  .titulo {
+    margin-bottom: $espacio-8;
+    font-size: $texto-producto;
+    font-weight: 700;
+    line-height: 28px;
+  }
+
+  .opcion {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: none;
+    border-radius: $radio-control;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+      color: $acento;
+    }
+  }
+
+  .raiz {
+    height: 44px;
+    padding: 0 $espacio-12;
+    color: $texto;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .ramas {
+    display: flex;
+    flex-direction: column;
+    gap: $espacio-8;
+    margin-top: $espacio-8;
+  }
+
+  .fila {
+    display: flex;
+    align-items: center;
+    gap: $espacio-8;
+  }
+
+  .categoria {
+    flex: 1;
+    height: 44px;
+    padding: 0 $espacio-12;
+    color: $texto;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .alternar {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: $radio-control;
+    background: $control;
+    color: $texto-secundario;
+    cursor: pointer;
+  }
+
+  .subcategoria {
+    height: 40px;
+    padding: 0 28px;
+    color: $texto-secundario;
+    font-size: 14px;
+  }
+
+  .activa {
+    background: $violeta-suave;
+    color: $acento;
+  }
+}

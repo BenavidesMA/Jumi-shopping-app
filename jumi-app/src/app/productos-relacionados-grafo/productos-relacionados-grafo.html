@@ -1,0 +1,10 @@
+<section class="relacionados">
+  <h2 class="titulo">También te puede interesar</h2>
+  <div class="cuadricula">
+    @for (item of relacionados(); track item.id) {
+      <app-tarjeta-producto [producto]="item" (agregar)="alAgregar($event)" />
+    } @empty {
+      <p class="vacio">Aún no hay productos relacionados con este.</p>
+    }
+  </div>
+</section>

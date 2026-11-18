@@ -1,0 +1,22 @@
+@use '../../estilos/tokens' as *;
+
+.relacionados {
+  .titulo {
+    font-size: $texto-seccion;
+    font-weight: 700;
+    line-height: 36px;
+  }
+
+  .cuadricula {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $espacio-32;
+    margin-top: $espacio-24;
+  }
+
+  .vacio {
+    grid-column: span 4;
+    color: $texto-secundario;
+    font-size: 14px;
+  }
+}

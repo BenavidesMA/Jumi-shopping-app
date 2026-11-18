@@ -1,0 +1,47 @@
+<nav class="categorias" aria-label="Categorías">
+  <h2 class="titulo">Categorías</h2>
+  @if (raiz; as nodoRaiz) {
+    <button type="button" [class]="obtenerClase(nodoRaiz.valor.id, 'raiz')" (click)="elegir(nodoRaiz.valor.id)">
+      {{ nodoRaiz.valor.titulo }}
+    </button>
+    <ul class="ramas">
+      @for (categoria of nodoRaiz.hijos; track categoria.valor.id) {
+        <li>
+          <div class="fila">
+            <button type="button" [class]="obtenerClase(categoria.valor.id, 'categoria')" (click)="elegir(categoria.valor.id)">
+              {{ categoria.valor.titulo }}
+            </button>
+            <button
+              type="button"
+              class="alternar"
+              [attr.aria-expanded]="estaExpandida(categoria.valor.id)"
+              [attr.aria-label]="etiquetaAlternar(categoria)"
+              (click)="alternar(categoria.valor.id)"
+            >
+              @if (estaExpandida(categoria.valor.id)) {
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              } @else {
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6h8M6 2v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              }
+            </button>
+          </div>
+          @if (estaExpandida(categoria.valor.id)) {
+            <ul class="subcategorias">
+              @for (subcategoria of categoria.hijos; track subcategoria.valor.id) {
+                <li>
+                  <button type="button" [class]="obtenerClase(subcategoria.valor.id, 'subcategoria')" (click)="elegir(subcategoria.valor.id)">
+                    {{ subcategoria.valor.titulo }}
+                  </button>
+                </li>
+              }
+            </ul>
+          }
+        </li>
+      }
+    </ul>
+  }
+</nav>

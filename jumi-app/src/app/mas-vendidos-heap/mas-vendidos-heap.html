@@ -1,0 +1,19 @@
+<section class="mas-vendidos">
+  <div class="encabezado">
+    <h2 class="titulo">{{ titulo }}</h2>
+    <span [class]="obtenerClaseEstado()" role="status" aria-live="polite">
+      <span class="punto" aria-hidden="true"></span>
+      {{ textoEstado() }}
+    </span>
+  </div>
+  @if (subtitulo !== '') {
+    <p class="subtitulo">{{ subtitulo }}</p>
+  }
+  <div [class]="obtenerClaseCuadricula()">
+    @for (producto of ranking(); track producto.id; let indice = $index) {
+      <app-tarjeta-producto [producto]="producto" [posicion]="indice + 1" (agregar)="alAgregar($event)" />
+    } @empty {
+      <p class="vacio">Todavía no hay productos para mostrar.</p>
+    }
+  </div>
+</section>
