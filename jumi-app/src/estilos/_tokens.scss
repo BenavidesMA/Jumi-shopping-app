@@ -1,0 +1,103 @@
+$fondo: #f6f7fb;
+$superficie: #ffffff;
+$texto: #111827;
+$texto-secundario: #64748b;
+$acento: #6d28d9;
+$acento-hover: #5b21b6;
+$borde: #e2e8f0;
+$violeta-suave: #f0eafe;
+$violeta-suave-hover: #e6dcfd;
+$violeta-claro: #c4b5fd;
+$exito: #166534;
+$exito-suave: #ebf7ee;
+$peligro: #b91c1c;
+$peligro-suave: #fdecec;
+$control: #f1f3f8;
+$oscuro: #111827;
+$texto-claro: #cbd5e1;
+
+$fuente: 'Inter', sans-serif;
+
+$espacio-4: 4px;
+$espacio-8: 8px;
+$espacio-12: 12px;
+$espacio-16: 16px;
+$espacio-24: 24px;
+$espacio-32: 32px;
+$espacio-48: 48px;
+$espacio-64: 64px;
+
+$radio-control: 8px;
+$radio-tarjeta: 12px;
+$radio-bloque: 20px;
+
+$sombra-suave: 0 1px 2px rgba(17, 24, 39, 0.04), 0 8px 24px rgba(17, 24, 39, 0.06);
+
+$ancho-pagina: 1440px;
+$margen-lateral: 80px;
+
+$texto-titulo: 48px;
+$texto-seccion: 28px;
+$texto-producto: 18px;
+$texto-base: 16px;
+$texto-meta: 13px;
+
+@mixin contenedor {
+    width: 100%;
+    max-width: $ancho-pagina;
+    margin: 0 auto;
+    padding: 0 $margen-lateral;
+}
+
+@mixin tarjeta {
+    background: $superficie;
+    border: 1px solid $borde;
+    border-radius: $radio-tarjeta;
+}
+
+@mixin boton-primario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 $espacio-24;
+    border: none;
+    border-radius: $radio-control;
+    background: $acento;
+    color: $superficie;
+    font-family: $fuente;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        background: $acento-hover;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+@mixin boton-secundario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 $espacio-24;
+    border: 1px solid $borde;
+    border-radius: $radio-control;
+    background: $superficie;
+    color: $acento;
+    font-family: $fuente;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        border-color: $acento;
+    }
+}
