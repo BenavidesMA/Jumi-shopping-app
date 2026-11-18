@@ -1,0 +1,107 @@
+@use '../../estilos/tokens' as *;
+
+.vistos {
+  .titulo {
+    font-size: $texto-seccion;
+    font-weight: 700;
+    line-height: 36px;
+  }
+
+  .subtitulo {
+    margin-top: $espacio-4;
+    color: $texto-secundario;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .lista {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: $espacio-24;
+  }
+
+  .visita {
+    @include tarjeta;
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    align-items: center;
+    column-gap: $espacio-24;
+    padding: 14px 80px 14px $espacio-16;
+
+    &:hover {
+      border-color: $violeta-claro;
+    }
+  }
+
+  .imagen {
+    display: block;
+    width: 140px;
+    height: 104px;
+    overflow: hidden;
+    border-radius: $radio-control;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: $espacio-16;
+  }
+
+  .nombre {
+    font-size: $texto-producto;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .precio {
+    font-size: $texto-producto;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .ver {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: $acento;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .flecha {
+    color: $acento;
+  }
+
+  .compacta {
+    margin-top: $espacio-12;
+
+    .visita {
+      grid-template-columns: 120px 1fr auto;
+      column-gap: 22px;
+      padding: 9px $espacio-32 9px $espacio-12;
+      border-color: transparent;
+    }
+
+    .imagen {
+      width: 120px;
+      height: 90px;
+    }
+
+    .info {
+      gap: $espacio-12;
+    }
+  }
+
+  .vacio {
+    grid-column: span 2;
+    color: $texto-secundario;
+    font-size: 14px;
+  }
+}

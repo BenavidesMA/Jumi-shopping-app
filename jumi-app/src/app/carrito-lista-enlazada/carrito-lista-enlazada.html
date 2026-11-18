@@ -1,0 +1,38 @@
+<ul class="carrito-lista">
+  @for (linea of lineas; track linea.producto.id) {
+    <li class="linea">
+      <a class="imagen" [routerLink]="['/producto', linea.producto.id]" tabindex="-1" aria-hidden="true">
+        <img [src]="linea.producto.imagen" alt="" width="500" height="375">
+      </a>
+      <div class="info">
+        <h3 class="nombre">
+          <a [routerLink]="['/producto', linea.producto.id]">{{ linea.producto.nombre }}</a>
+        </h3>
+        <p class="unitario">{{ linea.producto.precio | precioCop }} / unidad</p>
+        @if (editable) {
+          <button type="button" class="eliminar" (click)="alEliminar(linea)">Eliminar</button>
+        }
+      </div>
+      @if (editable) {
+        <div class="cantidad" role="group" [attr.aria-label]="'Cantidad de ' + linea.producto.nombre">
+          <button type="button" (click)="disminuir(linea)" [disabled]="linea.cantidad <= 1" aria-label="Disminuir cantidad">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 6h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+          <span>{{ linea.cantidad }}</span>
+          <button type="button" (click)="aumentar(linea)" [disabled]="linea.cantidad >= maximo" aria-label="Aumentar cantidad">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 6h8M6 2v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      } @else {
+        <p class="cantidad-fija">× {{ linea.cantidad }}</p>
+      }
+      <p class="subtotal">{{ linea.subtotal | precioCop }}</p>
+    </li>
+  } @empty {
+    <li class="vacio">Tu carrito está vacío.</li>
+  }
+</ul>

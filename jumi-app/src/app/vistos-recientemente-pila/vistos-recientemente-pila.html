@@ -1,0 +1,35 @@
+<section class="vistos">
+  <h2 class="titulo">Vistos recientemente</h2>
+  @if (!compacto) {
+    <p class="subtitulo">{{ textoSubtitulo() }}</p>
+  }
+  <ul [class]="obtenerClaseLista()">
+    @for (visita of visitas; track visita.clave) {
+      <li>
+        <a class="visita" [routerLink]="['/producto', visita.producto.id]">
+          <span class="imagen">
+            <img [src]="visita.producto.imagen" alt="" width="500" height="375">
+          </span>
+          <span class="info">
+            <span class="nombre">{{ visita.producto.nombre }}</span>
+            <span class="precio">{{ visita.producto.precio | precioCop }}</span>
+          </span>
+          @if (compacto) {
+            <svg class="flecha" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3.5 10.5l7-7M5 3.5h5.5V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          } @else {
+            <span class="ver">
+              Ver producto
+              <svg class="flecha" width="10" height="10" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M3.5 10.5l7-7M5 3.5h5.5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          }
+        </a>
+      </li>
+    } @empty {
+      <li class="vacio">Aún no has abierto ningún producto.</li>
+    }
+  </ul>
+</section>

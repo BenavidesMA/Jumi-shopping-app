@@ -1,0 +1,71 @@
+@use '../../estilos/tokens' as *;
+
+.mas-vendidos {
+  .encabezado {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .titulo {
+    font-size: $texto-seccion;
+    font-weight: 700;
+    line-height: 36px;
+  }
+
+  .estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 88px;
+    height: 26px;
+    padding: 0 $espacio-12;
+    border-radius: 13px;
+    background: $violeta-suave;
+    color: $acento;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .punto {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .conectando,
+  .reconectando {
+    background: $control;
+    color: $texto-secundario;
+  }
+
+  .error {
+    background: $peligro-suave;
+    color: $peligro;
+  }
+
+  .subtitulo {
+    margin-top: $espacio-8;
+    color: $texto-secundario;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .cuadricula {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $espacio-32;
+    margin-top: $espacio-24;
+  }
+
+  .compacta {
+    gap: $espacio-16;
+  }
+
+  .vacio {
+    grid-column: span 4;
+    color: $texto-secundario;
+    font-size: 14px;
+  }
+}

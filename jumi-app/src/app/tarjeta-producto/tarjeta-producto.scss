@@ -1,0 +1,109 @@
+@use '../../estilos/tokens' as *;
+
+:host {
+  display: block;
+}
+
+.tarjeta-producto {
+  @include tarjeta;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 17px 17px $espacio-24;
+
+  .posicion {
+    position: absolute;
+    top: 17px;
+    left: 16px;
+    z-index: 1;
+    padding: 2px $espacio-8;
+    border-radius: 6px;
+    background: $control;
+    color: $texto-secundario;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  .imagen {
+    display: block;
+    margin: 0 11px;
+    aspect-ratio: 1.34;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .meta {
+    margin-top: $espacio-12;
+    color: $texto-secundario;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  .nombre {
+    margin-top: $espacio-8;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .precio {
+    margin-top: $espacio-12;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+  }
+
+  .acciones {
+    display: flex;
+    align-items: center;
+    gap: $espacio-12;
+    margin-top: auto;
+    padding-top: $espacio-16;
+  }
+
+  .ver-detalle {
+    flex-shrink: 0;
+    color: $acento;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .agregar {
+    display: inline-flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: $espacio-8;
+    max-width: 148px;
+    height: 36px;
+    padding: 0 $espacio-16;
+    border: none;
+    border-radius: $radio-control;
+    background: $violeta-suave;
+    color: $acento;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+
+    svg {
+      color: $texto-secundario;
+    }
+
+    &:hover {
+      background: $violeta-suave-hover;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
