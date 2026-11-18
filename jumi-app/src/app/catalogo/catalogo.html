@@ -1,0 +1,69 @@
+<div class="catalogo">
+    <nav class="migas" aria-label="Ruta de navegación">
+        <a routerLink="/inicio">Inicio</a>
+        <span class="separador" aria-hidden="true">/</span>
+        @if (migas().length === 0) {
+        <span aria-current="page">Catálogo</span>
+        } @else {
+        <a routerLink="/catalogo">Catálogo</a>
+        @for (nodo of migas(); track nodo.valor.id; let ultimo = $last) {
+        <span class="separador" aria-hidden="true">/</span>
+        @if (ultimo) {
+        <span aria-current="page">{{ nodo.valor.titulo }}</span>
+        } @else {
+        <a routerLink="/catalogo" [queryParams]="{ categoria: nodo.valor.id }">{{ nodo.valor.titulo }}</a>
+        }
+        }
+        }
+    </nav>
+
+    <div class="contenido">
+        <app-categorias-arbol-nario [raiz]="raiz()" [seleccionado]="seleccionado()"
+            (seleccionar)="seleccionar($event)" />
+
+        <section class="principal">
+            <div class="cabecera">
+                <div>
+                    <h1 class="titulo">{{ titulo() }}</h1>
+                    @if (baseDatos.estadoCatalogo() === 'listo') {
+                    <p class="cantidad">
+                        {{ textoCantidad() }}
+                        @if (textoBusqueda() !== '') {
+                        para «{{ textoBusqueda() }}»
+                        <button type="button" class="limpiar" (click)="limpiarBusqueda()">Limpiar búsqueda</button>
+                        }
+                    </p>
+                    }
+                </div>
+                <p class="orden">Ordenar: nombre</p>
+            </div>
+
+            @if (baseDatos.estadoCatalogo() === 'listo') {
+            <div class="cuadricula">
+                @for (producto of resultados(); track producto.id) {
+                <app-tarjeta-producto [producto]="producto" (agregar)="agregar($event)" />
+                } @empty {
+                <div class="sin-resultados">
+                    <p>{{ textoSinResultados() }}</p>
+                    @if (textoBusqueda() !== '') {
+                    <button type="button" (click)="limpiarBusqueda()">Ver todo en {{ titulo() }}</button>
+                    }
+                </div>
+                }
+            </div>
+            @if (seleccionado() !== idRaiz) {
+            <app-mas-vendidos-heap class="mas-vendidos" [productos]="productosCategoria()"
+                [estado]="baseDatos.estadoVentas()" [titulo]="'Más vendidos en ' + titulo()" [compacto]="true"
+                (agregar)="agregar($event)" />
+            }
+            } @else if (baseDatos.estadoCatalogo() === 'error') {
+            <div class="aviso">
+                <p>{{ baseDatos.errorCatalogo() }}</p>
+                <button type="button" (click)="reintentar()">Reintentar</button>
+            </div>
+            } @else {
+            <p class="cargando">Cargando productos…</p>
+            }
+        </section>
+    </div>
+</div>
