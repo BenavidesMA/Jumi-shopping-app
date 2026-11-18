@@ -1,0 +1,150 @@
+@use '../../estilos/tokens' as *;
+
+.mis-compras {
+  @include contenedor;
+  padding-top: 35px;
+  padding-bottom: $espacio-64;
+
+  .migas {
+    display: flex;
+    align-items: center;
+    gap: $espacio-8;
+    color: $texto-secundario;
+    font-size: 13px;
+    line-height: 20px;
+
+    a:hover {
+      color: $acento;
+    }
+  }
+
+  .titulo {
+    margin-top: $espacio-32;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 44px;
+  }
+
+  .conteo {
+    margin-top: $espacio-4;
+    color: $texto-secundario;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .pedidos {
+    display: flex;
+    flex-direction: column;
+    gap: $espacio-16;
+    max-width: 800px;
+    margin-top: 28px;
+  }
+
+  .pedido {
+    @include tarjeta;
+    padding: $espacio-24 28px;
+  }
+
+  .cabecera {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $espacio-24;
+
+    h2 {
+      font-size: $texto-producto;
+      font-weight: 600;
+      line-height: 24px;
+    }
+  }
+
+  .fecha {
+    margin-top: $espacio-4;
+    color: $texto-secundario;
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .total {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    white-space: nowrap;
+
+    span {
+      color: $texto-secundario;
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+
+  .lineas {
+    display: flex;
+    flex-direction: column;
+    gap: $espacio-8;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid $borde;
+    color: $texto-secundario;
+    font-size: 15px;
+    line-height: 22px;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .ver {
+    display: inline-block;
+    margin-top: 20px;
+    color: $acento;
+    font-size: 14px;
+    font-weight: 600;
+
+    &:hover {
+      color: $acento-hover;
+    }
+  }
+
+  .vacio {
+    @include tarjeta;
+    padding: $espacio-48;
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 28px;
+    }
+
+    p {
+      margin-top: $espacio-8;
+      color: $texto-secundario;
+    }
+
+    a {
+      @include boton-primario;
+      margin-top: $espacio-24;
+    }
+  }
+
+  .cargando {
+    margin-top: 28px;
+    color: $texto-secundario;
+  }
+
+  .aviso {
+    @include tarjeta;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 800px;
+    margin-top: 28px;
+    padding: $espacio-24;
+    color: $texto-secundario;
+
+    button {
+      @include boton-secundario;
+    }
+  }
+}
