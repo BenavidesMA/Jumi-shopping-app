@@ -1,0 +1,127 @@
+@use 'tokens' as *;
+
+@mixin pagina-compra {
+    .migas {
+        display: flex;
+        align-items: center;
+        gap: $espacio-8;
+        color: $texto-secundario;
+        font-size: 13px;
+        line-height: 20px;
+
+        a:hover {
+            color: $acento;
+        }
+    }
+
+    .disposicion {
+        display: grid;
+        grid-template-columns: minmax(0, 800px) 440px;
+        align-items: start;
+        column-gap: 40px;
+        margin-top: $espacio-32;
+    }
+
+    .titulo {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 44px;
+    }
+
+    .conteo {
+        margin-top: $espacio-4;
+        color: $texto-secundario;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .lista {
+        display: block;
+        margin-top: 28px;
+    }
+
+    .lateral {
+        margin-top: 73px;
+    }
+
+    .resumen {
+        @include tarjeta;
+        padding: 28px 28px 22px;
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 28px;
+        }
+    }
+
+    .filas {
+        display: flex;
+        flex-direction: column;
+        gap: $espacio-16;
+        margin: $espacio-32 0 0;
+        padding-bottom: $espacio-32;
+        border-bottom: 1px solid $borde;
+    }
+
+    .fila {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 20px;
+        font-size: 14px;
+        line-height: 20px;
+
+        dt {
+            color: $texto-secundario;
+        }
+
+        dd {
+            margin: 0;
+            font-weight: 600;
+        }
+    }
+
+    .total {
+        display: grid;
+        grid-template-columns: 176px 1fr;
+        align-items: center;
+        padding-top: 20px;
+
+        .etiqueta {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .valor {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 40px;
+        }
+    }
+
+    .moneda {
+        margin-top: 10px;
+        color: $texto-secundario;
+        font-size: 13px;
+        line-height: 18px;
+    }
+
+    .cargando {
+        margin-top: 28px;
+        color: $texto-secundario;
+    }
+
+    .aviso {
+        @include tarjeta;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 28px;
+        padding: $espacio-24;
+        color: $texto-secundario;
+
+        button {
+            @include boton-secundario;
+        }
+    }
+}

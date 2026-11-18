@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "cargar:productos": "node scripts/cargar-productos.mjs"
   },
   "private": true,
   "packageManager": "npm@11.6.2",
