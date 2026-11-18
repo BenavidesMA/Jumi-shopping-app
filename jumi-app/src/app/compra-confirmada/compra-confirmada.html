@@ -1,0 +1,45 @@
+<section class="confirmada">
+  @if (estado() === 'listo') {
+    @if (pedido(); as datos) {
+      <article class="tarjeta">
+        <span class="icono" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M7 14.5l4.5 4.5L21 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <h1>¡Tu compra está confirmada!</h1>
+        <p class="simulada">Compra simulada · Sin cobro real</p>
+        <h2 class="codigo">Pedido {{ codigo(datos.id) }}</h2>
+        <ul class="lineas">
+          @for (linea of lineas(); track linea.id) {
+            <li>{{ linea.nombre }} × {{ linea.cantidad }}</li>
+          }
+        </ul>
+        <p class="total"><span>Total</span> {{ datos.total | precioCop }} COP</p>
+        <div class="acciones">
+          <a class="primario" routerLink="/mis-compras">Mis compras</a>
+          <a class="secundario" routerLink="/catalogo">Seguir explorando</a>
+        </div>
+        <p [class]="obtenerClaseActualizacion()" role="status">{{ textoActualizacion() }}</p>
+      </article>
+    }
+  } @else if (estado() === 'no-encontrado') {
+    <article class="tarjeta">
+      <h1>No encontramos este pedido</h1>
+      <p class="simulada">Revisa Mis compras para ver los pedidos de tu cuenta.</p>
+      <div class="acciones">
+        <a class="primario" routerLink="/mis-compras">Mis compras</a>
+      </div>
+    </article>
+  } @else if (estado() === 'error') {
+    <article class="tarjeta">
+      <h1>No pudimos cargar tu pedido</h1>
+      <p class="simulada">Revisa tu conexión e inténtalo de nuevo.</p>
+      <div class="acciones">
+        <button type="button" class="primario" (click)="reintentar()">Reintentar</button>
+      </div>
+    </article>
+  } @else {
+    <p class="cargando" role="status">Cargando tu pedido…</p>
+  }
+</section>

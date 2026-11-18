@@ -1,0 +1,48 @@
+<section class="mis-compras">
+  <nav class="migas" aria-label="Ruta de navegación">
+    <a routerLink="/inicio">Inicio</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Mis compras</span>
+  </nav>
+
+  <h1 class="titulo">Mis compras</h1>
+
+  @if (estado() === 'listo') {
+    <p class="conteo">{{ textoCantidad() }}</p>
+    <ul class="pedidos">
+      @for (pedido of pedidos(); track pedido.id) {
+        <li class="pedido">
+          <div class="cabecera">
+            <div>
+              <h2>Pedido {{ codigo(pedido.id) }}</h2>
+              <p class="fecha">{{ fecha(pedido) }}</p>
+            </div>
+            <p class="total">{{ pedido.total | precioCop }} <span>COP</span></p>
+          </div>
+          <ul class="lineas">
+            @for (linea of lineas(pedido); track linea.id) {
+              <li>
+                <span>{{ linea.nombre }} × {{ linea.cantidad }}</span>
+                <span>{{ linea.subtotal | precioCop }}</span>
+              </li>
+            }
+          </ul>
+          <a class="ver" [routerLink]="['/compra-confirmada', pedido.id]">Ver confirmación</a>
+        </li>
+      } @empty {
+        <li class="vacio">
+          <h2>Aún no tienes compras</h2>
+          <p>Cuando confirmes una compra, aparecerá aquí.</p>
+          <a routerLink="/catalogo">Explorar productos</a>
+        </li>
+      }
+    </ul>
+  } @else if (estado() === 'error') {
+    <div class="aviso" role="alert">
+      <p>No pudimos cargar tus compras. Revisa tu conexión.</p>
+      <button type="button" (click)="reintentar()">Reintentar</button>
+    </div>
+  } @else {
+    <p class="cargando" role="status">Cargando tus compras…</p>
+  }
+</section>

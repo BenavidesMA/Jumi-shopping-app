@@ -1,0 +1,59 @@
+<section class="carrito">
+  <nav class="migas" aria-label="Ruta de navegación">
+    <a routerLink="/inicio">Inicio</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Carrito</span>
+  </nav>
+
+  <div class="disposicion">
+    <div class="principal">
+      <h1 class="titulo">Tu carrito</h1>
+      @if (estadoTienda.listo()) {
+        <p class="conteo">{{ estadoTienda.textoConteo() }}</p>
+        <app-carrito-lista-enlazada
+          class="lista"
+          [lineas]="estadoTienda.lineas()"
+          (cambiarCantidad)="cambiarCantidad($event)"
+          (eliminar)="eliminar($event)"
+        />
+      } @else if (baseDatos.estadoCatalogo() === 'error') {
+        <div class="aviso" role="alert">
+          <p>{{ baseDatos.errorCatalogo() }}</p>
+          <button type="button" (click)="reintentar()">Reintentar</button>
+        </div>
+      } @else {
+        <p class="cargando" role="status">Cargando tu carrito…</p>
+      }
+      <a class="seguir" routerLink="/catalogo">Seguir comprando</a>
+    </div>
+
+    <aside class="lateral">
+      <section class="resumen" aria-labelledby="titulo-resumen">
+        <h2 id="titulo-resumen">Resumen de compra</h2>
+        <dl class="filas">
+          <div class="fila">
+            <dt>Productos distintos</dt>
+            <dd>{{ estadoTienda.productosDistintos() }}</dd>
+          </div>
+          <div class="fila">
+            <dt>Unidades</dt>
+            <dd>{{ estadoTienda.unidades() }}</dd>
+          </div>
+        </dl>
+        <div class="total">
+          <span class="etiqueta">Total</span>
+          <span class="valor">{{ estadoTienda.total() | precioCop }}</span>
+        </div>
+        <p class="moneda">Pesos colombianos · COP</p>
+        <button type="button" class="finalizar" [disabled]="!puedeFinalizar()" (click)="finalizarCompra()">Finalizar compra</button>
+      </section>
+
+      @if (esVisitante()) {
+        <div class="continuar">
+          <p class="pregunta">¿Listo para continuar?</p>
+          <p>Inicia sesión o crea una cuenta para finalizar.<br>Tu carrito se conserva.</p>
+        </div>
+      }
+    </aside>
+  </div>
+</section>

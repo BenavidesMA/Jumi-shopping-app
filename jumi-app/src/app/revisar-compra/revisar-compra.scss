@@ -1,0 +1,52 @@
+@use '../../estilos/tokens' as *;
+@use '../../estilos/compra' as *;
+
+.revisar {
+  @include contenedor;
+  padding-top: 35px;
+  padding-bottom: $espacio-64;
+
+  @include pagina-compra;
+
+  .volver {
+    @include boton-secundario;
+    width: 208px;
+    margin-top: 40px;
+  }
+
+  .error {
+    margin-top: $espacio-24;
+    padding: $espacio-12 $espacio-16;
+    border-radius: $radio-control;
+    background: $peligro-suave;
+    color: $peligro;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .confirmar {
+    @include boton-primario;
+    width: 100%;
+    margin-top: 26px;
+  }
+
+  .nota {
+    margin-top: $espacio-12;
+    color: $texto-secundario;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+  }
+
+  .vacio {
+    @include tarjeta;
+    margin-top: 28px;
+    padding: $espacio-24;
+    color: $texto-secundario;
+
+    a {
+      @include boton-primario;
+      margin-top: $espacio-16;
+    }
+  }
+}
