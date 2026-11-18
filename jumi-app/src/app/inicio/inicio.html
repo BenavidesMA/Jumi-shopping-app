@@ -1,0 +1,49 @@
+<div class="inicio">
+    <section class="hero">
+        <div class="texto">
+            <p class="antetitulo">TU ESPACIO. TU RITMO.</p>
+            <h1 class="titulo">Haz espacio<br>para lo que viene.</h1>
+            <p class="descripcion">Teclados, mouses, audífonos y monitores<br>para trabajar, jugar y crear a tu manera.
+            </p>
+            <a class="explorar" routerLink="/catalogo">Explorar productos</a>
+        </div>
+        <figure class="imagen">
+            <img src="img/Hero-1.png" alt="Teclado mecánico Aura 75 con teclas blancas y violetas" width="500"
+                height="375">
+            <figcaption>Aura 75 / Teclado mecánico</figcaption>
+        </figure>
+    </section>
+
+    <section class="categorias">
+        <h2 class="seccion">Encuentra tu categoría</h2>
+        <div class="cuadricula-categorias">
+            @for (categoria of categorias; track categoria.id) {
+            <a class="categoria" routerLink="/catalogo" [queryParams]="{ categoria: categoria.id }">
+                <span class="nombre">{{ categoria.titulo }}</span>
+                <span class="miniatura">
+                    <img [src]="categoria.imagen" alt="" width="500" height="375">
+                </span>
+                <svg class="flecha" width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M3.5 10.5l7-7M5 3.5h5.5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+            }
+        </div>
+    </section>
+
+    @if (baseDatos.estadoCatalogo() === 'listo') {
+    <app-mas-vendidos-heap class="bloque" [productos]="baseDatos.productos()" [estado]="baseDatos.estadoVentas()"
+        subtitulo="Los productos más populares de JUMI." (agregar)="agregar($event)" />
+    } @else if (baseDatos.estadoCatalogo() === 'error') {
+    <div class="bloque aviso">
+        <p>{{ baseDatos.errorCatalogo() }}</p>
+        <button type="button" (click)="reintentar()">Reintentar</button>
+    </div>
+    } @else {
+    <p class="bloque cargando">Cargando productos…</p>
+    }
+
+    <app-vistos-recientemente-pila class="bloque" [visitas]="estadoTienda.visitas()"
+        [ultima]="estadoTienda.ultimaVisita()" />
+</div>

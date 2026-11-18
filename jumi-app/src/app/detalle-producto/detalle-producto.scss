@@ -1,0 +1,201 @@
+@use '../../estilos/tokens' as *;
+
+.detalle {
+    @include contenedor;
+    padding-top: $espacio-32;
+    padding-bottom: $espacio-16;
+
+    .migas {
+        display: flex;
+        align-items: center;
+        gap: $espacio-8;
+        color: $texto-secundario;
+        font-size: 13px;
+        line-height: 20px;
+
+        a:hover {
+            color: $acento;
+        }
+    }
+
+    .producto {
+        display: grid;
+        grid-template-columns: minmax(0, 622px) minmax(0, 580px);
+        align-items: start;
+        column-gap: $espacio-48;
+        margin-top: 44px;
+    }
+
+    .imagen {
+        margin-top: $espacio-12;
+        aspect-ratio: 1.34;
+        overflow: hidden;
+        border-radius: $radio-tarjeta;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .categoria {
+        color: $acento;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        line-height: 16px;
+        text-transform: uppercase;
+    }
+
+    .nombre {
+        margin-top: 20px;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 44px;
+    }
+
+    .descripcion {
+        max-width: 540px;
+        margin-top: $espacio-16;
+        color: $texto-secundario;
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    .precio {
+        display: flex;
+        align-items: center;
+        gap: $espacio-64;
+        margin-top: $espacio-32;
+
+        .valor {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 40px;
+        }
+
+        .moneda {
+            color: $texto-secundario;
+            font-size: 13px;
+            font-weight: 500;
+        }
+    }
+
+    .disponibilidad {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 148px;
+        height: 30px;
+        margin-top: 18px;
+        padding: 0 $espacio-12;
+        border-radius: 15px;
+        background: $exito-suave;
+        color: $exito;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .agotado {
+        background: $control;
+        color: $texto-secundario;
+    }
+
+    .punto {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: currentColor;
+    }
+
+    .subtitulo {
+        margin-top: $espacio-24;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px;
+    }
+
+    .especificaciones {
+        margin: $espacio-12 0 0;
+
+        .fila {
+            display: grid;
+            grid-template-columns: 228px 1fr;
+            align-items: center;
+            height: 38px;
+            padding-left: $espacio-12;
+
+            &:nth-child(odd) {
+                background: $superficie;
+            }
+        }
+
+        dt {
+            color: $texto-secundario;
+            font-size: 14px;
+        }
+
+        dd {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+
+    .agregar {
+        @include boton-primario;
+        margin-top: 30px;
+        padding: 0 20px;
+    }
+
+    .relacionados {
+        display: block;
+        margin-top: 128px;
+    }
+
+    .vistos {
+        display: block;
+        margin-top: $espacio-48;
+    }
+
+    .no-encontrado {
+        @include tarjeta;
+        margin-top: 40px;
+        padding: $espacio-48;
+
+        h1 {
+            font-size: $texto-seccion;
+            font-weight: 700;
+        }
+
+        p {
+            margin-top: $espacio-8;
+            color: $texto-secundario;
+        }
+
+        a {
+            @include boton-primario;
+            margin-top: $espacio-24;
+        }
+    }
+
+    .cargando {
+        margin-top: 40px;
+        color: $texto-secundario;
+    }
+
+    .aviso {
+        @include tarjeta;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding: $espacio-24;
+        color: $texto-secundario;
+
+        button {
+            @include boton-secundario;
+        }
+    }
+}

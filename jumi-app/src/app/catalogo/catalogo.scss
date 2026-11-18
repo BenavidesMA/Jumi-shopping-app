@@ -1,0 +1,116 @@
+@use '../../estilos/tokens' as *;
+
+.catalogo {
+    @include contenedor;
+    padding-top: $espacio-32;
+    padding-bottom: $espacio-64;
+
+    .migas {
+        display: flex;
+        align-items: center;
+        gap: $espacio-8;
+        color: $texto-secundario;
+        font-size: 13px;
+        line-height: 20px;
+
+        a:hover {
+            color: $acento;
+        }
+    }
+
+    .contenido {
+        display: grid;
+        grid-template-columns: 244px minmax(0, 1fr);
+        align-items: start;
+        column-gap: 40px;
+        margin-top: 36px;
+    }
+
+    .cabecera {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        max-width: 957px;
+    }
+
+    .titulo {
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 40px;
+    }
+
+    .cantidad {
+        margin-top: $espacio-8;
+        color: $texto-secundario;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .limpiar {
+        margin-left: $espacio-8;
+        padding: 0;
+        border: none;
+        background: none;
+        color: $acento;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .orden {
+        display: flex;
+        align-items: center;
+        min-width: 219px;
+        height: 44px;
+        padding: 0 $espacio-16;
+        border: 1px solid $borde;
+        border-radius: $radio-control;
+        background: $superficie;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .cuadricula {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 292px));
+        gap: 28px;
+        margin-top: 40px;
+    }
+
+    .sin-resultados {
+        @include tarjeta;
+        grid-column: span 3;
+        padding: $espacio-32;
+        color: $texto-secundario;
+
+        button {
+            @include boton-secundario;
+            margin-top: $espacio-16;
+        }
+    }
+
+    .mas-vendidos {
+        display: block;
+        max-width: 932px;
+        margin-top: $espacio-64;
+    }
+
+    .cargando {
+        margin-top: 40px;
+        color: $texto-secundario;
+    }
+
+    .aviso {
+        @include tarjeta;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding: $espacio-24;
+        color: $texto-secundario;
+
+        button {
+            @include boton-secundario;
+        }
+    }
+}
