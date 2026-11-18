@@ -1,0 +1,50 @@
+@use '../../estilos/tokens' as *;
+
+.pie {
+  background: $superficie;
+
+  .interior {
+    @include contenedor;
+    display: flex;
+    align-items: center;
+    height: 96px;
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .frase {
+    margin-left: 60px;
+    color: $texto-secundario;
+    font-size: 14px;
+  }
+
+  .enlaces {
+    display: flex;
+    align-items: center;
+    margin-right: 52px;
+    margin-left: auto;
+
+    a {
+      font-size: 14px;
+      font-weight: 500;
+
+      &:hover {
+        color: $acento;
+      }
+    }
+
+    a + a {
+      margin-left: 56px;
+    }
+  }
+
+  .moneda {
+    margin-left: 40px;
+    color: $texto-secundario;
+    font-size: 12px;
+  }
+}

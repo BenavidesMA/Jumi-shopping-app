@@ -1,0 +1,165 @@
+@use '../../estilos/tokens' as *;
+
+.encabezado {
+  background: $superficie;
+
+  .interior {
+    @include contenedor;
+    display: flex;
+    align-items: center;
+    height: 88px;
+  }
+
+  .logo {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .navegacion {
+    display: flex;
+    gap: 36px;
+    margin-left: 60px;
+
+    a {
+      font-size: 14px;
+      font-weight: 500;
+
+      &:hover {
+        color: $acento;
+      }
+    }
+  }
+
+  .buscador {
+    position: relative;
+    width: 432px;
+    margin-left: 62px;
+
+    .lupa {
+      position: absolute;
+      top: 14px;
+      left: $espacio-16;
+      color: $texto-secundario;
+      pointer-events: none;
+    }
+
+    input {
+      width: 100%;
+      height: 48px;
+      padding: 0 $espacio-16 0 50px;
+      border: 1px solid transparent;
+      border-radius: $radio-control;
+      background: $control;
+      font-size: 14px;
+      appearance: none;
+
+      &::placeholder {
+        color: $texto-secundario;
+      }
+
+      &:focus {
+        border-color: $acento;
+        background: $superficie;
+        outline: none;
+      }
+    }
+  }
+
+  .carrito {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 54px;
+    color: $texto-secundario;
+
+    .contador {
+      color: $acento;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    &:hover {
+      color: $acento;
+    }
+  }
+
+  .acceso,
+  .usuario {
+    margin-right: 62px;
+    margin-left: auto;
+  }
+
+  .acceso {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+  }
+
+  .reservado {
+    width: 308px;
+    height: 44px;
+  }
+
+  .iniciar {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .crear {
+    @include boton-primario;
+    width: 174px;
+    height: 44px;
+  }
+
+  .usuario {
+    position: relative;
+  }
+
+  .menu-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 268px;
+    height: 44px;
+    padding: 0 20px;
+    border: none;
+    border-radius: $radio-control;
+    background: $control;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .desplegable {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: $espacio-8;
+    border: 1px solid $borde;
+    border-radius: $radio-tarjeta;
+    background: $superficie;
+    box-shadow: $sombra-suave;
+
+    a,
+    button {
+      width: 100%;
+      padding: 10px $espacio-12;
+      border: none;
+      border-radius: $radio-control;
+      background: none;
+      font-size: 14px;
+      text-align: left;
+      cursor: pointer;
+
+      &:hover {
+        background: $control;
+      }
+    }
+  }
+}
