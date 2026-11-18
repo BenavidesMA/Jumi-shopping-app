@@ -1,0 +1,58 @@
+<header class="encabezado">
+  <div class="interior">
+    <a class="logo" routerLink="/inicio" aria-label="JUMI, ir al inicio">JUMI</a>
+
+    <nav class="navegacion" aria-label="Principal">
+      <a routerLink="/inicio" routerLinkActive="activo" ariaCurrentWhenActive="page">Inicio</a>
+      <a routerLink="/catalogo" routerLinkActive="activo" ariaCurrentWhenActive="page">Catálogo</a>
+    </nav>
+
+    <form class="buscador" role="search" (ngSubmit)="buscar()">
+      <svg class="lupa" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="8.5" cy="8.5" r="6" stroke="currentColor" stroke-width="1.6" />
+        <path d="M13 13l4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+      <input
+        type="search"
+        name="busqueda"
+        [(ngModel)]="busqueda"
+        placeholder="Buscar por nombre de producto"
+        aria-label="Buscar por nombre de producto"
+        autocomplete="off"
+      >
+    </form>
+
+    <a class="carrito" routerLink="/carrito" [attr.aria-label]="'Carrito: ' + estadoTienda.productosDistintos() + ' productos'">
+      <svg width="22" height="20" viewBox="0 0 22 20" fill="none" aria-hidden="true">
+        <path d="M1.5 1.5h3l2.2 10.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.1L20 5H5.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="9" cy="17.5" r="1.3" fill="currentColor" />
+        <circle cx="16.5" cy="17.5" r="1.3" fill="currentColor" />
+      </svg>
+      <span class="contador">{{ estadoTienda.productosDistintos() }}</span>
+    </a>
+
+    @if (auth.usuario() !== null) {
+      <div class="usuario">
+        <button type="button" class="menu-usuario" aria-haspopup="menu" [attr.aria-expanded]="menuAbierto()" (click)="alternarMenu()">
+          <span>Hola, {{ auth.nombreVisible() }}</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        @if (menuAbierto()) {
+          <div class="desplegable" role="menu">
+            <a role="menuitem" routerLink="/mis-compras" (click)="cerrarMenu()">Mis compras</a>
+            <button type="button" role="menuitem" [disabled]="saliendo()" (click)="cerrarSesion()">Cerrar sesión</button>
+          </div>
+        }
+      </div>
+    } @else if (auth.resuelto()) {
+      <div class="acceso">
+        <a class="iniciar" routerLink="/iniciar-sesion" [queryParams]="parametrosRetorno()">Iniciar sesión</a>
+        <a class="crear" routerLink="/crear-cuenta" [queryParams]="parametrosRetorno()">Crear cuenta</a>
+      </div>
+    } @else {
+      <div class="acceso reservado" aria-hidden="true"></div>
+    }
+  </div>
+</header>
